@@ -3,11 +3,11 @@
 
 #include <Arduino.h>
 
-#define LEN_HTTP_PATH_MAX 256
-#define HTTP_OK           200
+#define LEN_HTTP_PAYLOAD_MAX    1024
+#define LEN_HTTP_DATA_MAX       384
+#define HTTP_OK                 200
+#define TIMEOUT_SSL             10000
 
-void RESTInit();
-boolean RESTPostTemperature();
-boolean RESTPostTeraSys(const char* data);
+boolean RESTPostMetrics(const char* temp, const char* hum);
 
 #endif /* ARDUINO_RESTCONNECTOR_H */

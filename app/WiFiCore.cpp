@@ -7,8 +7,7 @@ void WiFiBegin(const char* ssid, const char* pass)
 {
   WiFi.begin(ssid, pass);
   Printf("Waiting for AP connection ...\n");
-  while(WiFi.status() != WL_CONNECTED)
-  {
+  while(WiFi.status() != WL_CONNECTED) {
     delay(delayMilis);
     Printf(".");
   }

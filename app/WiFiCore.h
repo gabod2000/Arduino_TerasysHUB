@@ -3,6 +3,9 @@
 
 #include <ESP8266WiFi.h>
 
+#define LEN_SSID_MAX        32
+#define LEN_PASSPHRASE_MAX  64
+
 void WiFiBegin(const char* ssid, const char* pass);
 void WiFiStop();
 void WiFiGetIP(char *deviceIP);

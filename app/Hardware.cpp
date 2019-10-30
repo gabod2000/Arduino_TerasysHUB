@@ -2,24 +2,17 @@
 #include "Global.h"
 #include <DHT.h>
 
-#define DHTPIN  5
-#define DHTTYPE DHT11
-#define IS_FAHRENHEIT false
-
-DHT dht(DHTPIN, DHTTYPE);
-
+DHT dht(DHT_PIN, DHT_TYPE);
 const uint8_t hw_delay = 10;
 
 String Temperature()
 {
-  float t = dht.readTemperature(IS_FAHRENHEIT);
-  if (isnan(t))
-  {    
+  float t = dht.readTemperature(DHT_FAHRENHEIT);
+  if (isnan(t)) {
     Serial.println("Failed to read from DHT sensor!");
     return INCORRECT_MEASUREMENT;
   }
-  else
-  {
+  else {
     Serial.println(t);
     return String(t);
   }
@@ -28,13 +21,11 @@ String Temperature()
 String Humidity()
 {
   float h = dht.readHumidity();
-  if (isnan(h))
-  {
+  if (isnan(h)) {
     Serial.println("Failed to read from DHT sensor!");
     return INCORRECT_MEASUREMENT;
   }
-  else
-  {
+  else {
     Serial.println(h);
     return String(h);
   }
@@ -45,12 +36,11 @@ void SerialInit()
   Serial.begin(SERIAL_BAUD_RATE);
   Serial.setDebugOutput(true);
   delay(hw_delay);
-  dht.begin();
 }
 
 void GPIOInit()
 {
-  /* Set initial state for your GPIOs. */
+  dht.begin();
 }
 
 void HWInit()

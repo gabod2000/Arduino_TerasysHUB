@@ -1,5 +1,6 @@
 #include "Timer.h"
 #include "Hardware.h"
+#include "NTP.h"
 #include "RESTConnector.h"
 #include "Global.h"
 
@@ -8,7 +9,6 @@ extern "C" {
 #include "user_interface.h"
 }
 
-String measurement = "";
 os_timer_t publishTimer;
 boolean publishTimerTick = false;
 
@@ -27,20 +27,9 @@ void TIMERInit(unsigned int timerDelay)
 
 void TIMERLoop()
 {
-  if(publishTimerTick)
-  {
-    measurement = Temperature();
-    if (measurement != INCORRECT_MEASUREMENT)
-    {
-      //RESTPostTeraSys(measurement.c_str());
-      Printf("%s\n", measurement.c_str());
-    }
-    measurement = Humidity();
-    if (measurement != INCORRECT_MEASUREMENT)
-    {
-      //RESTPostTeraSys(measurement.c_str());
-      Printf("%s\n", measurement.c_str());
-    }
+  if (publishTimerTick) {
+    /* Periodic timer function to POST data to TeraSYS IoT HUB */
+    RESTPostMetrics(Temperature().c_str(), Humidity().c_str());
     publishTimerTick = false;
   }
 }
