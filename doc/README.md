@@ -4,7 +4,7 @@ Below steps will guide you to run ESP8266 based TeraSysHub REST example via Ardu
 ### Wiring the HW
 * DHT11 is a One Wire protocol based sensor so you need to provide 3.3V, Ground and Data pins. 
 * Our Data pin is ESP8266's **GPIO 5**. Notice that it is equivalent to **D1** in NodeMCU fashion. Check **Hardware.cpp** and **Hardware.h** files if you are interested more or skip to the next steps.
-* You need to construct your ESP8266 and DHT wiring as given diagram below :
+* You need to construct your ESP8266 and DHT wiring as in the given diagram below :
 ![Alt text](img/sensorwiring.png?raw=true "ESP8266-DHT11 Wiring")
 
 ### Arduino IDE Setup
