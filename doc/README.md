@@ -32,7 +32,7 @@ $ sudo adduser $USER dialout
 ```
 
 ### Running the RESTFul code sample
-* Now you are ready to get the sample code. First, clone the TeraSysHUB client repository via git or just download as [zip](https://github.com/gabod2000/Arduino_TerasysHUB) :
+* Now you are ready to get the sample code. First, clone the TerasysHUB client repository via git or just download as [zip](https://github.com/gabod2000/Arduino_TerasysHUB) :
 ```
 $ git clone https://github.com/gabod2000/Arduino_TerasysHUB.git
 ```
@@ -55,4 +55,4 @@ Arduino_TerasysHUB/app
 ```
 * After your credentials have been update, compile the code (Ctrl + R) and upload (Ctrl + U) into your device. Please do not forget to select your ESP8266's serial device from the **Tools->Port** section.
 * After you have successfully connect to your WiFi Network, the sample code will measure temperature and humidity and will post it to Terasys HUB periodically within 20 seconds.
-* To see the data post to the TerasysHub, from your device, you can enable **Serial Monitor** and check the logs.
+* To see the data post to the TerasysHUB, from your device, you can enable **Serial Monitor** and check the logs.
