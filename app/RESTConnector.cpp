@@ -45,7 +45,7 @@ boolean postComposedData(const char* path, const char* data)
         Printf("Posted : %s\n", data);
         ret = true;
       } else {
-        Printf("Data post failure!\n");
+        Printf("Data post failure : %s\n", data);
       }
       yield();
     }

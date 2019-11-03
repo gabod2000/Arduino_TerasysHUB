@@ -14,10 +14,16 @@ Below steps will guide you to run ESP8266 based TeraSysHub REST example via Ardu
 ```
 http://arduino.esp8266.com/stable/package_esp8266com_index.json
 ```
-* Go to Boards Manager from **Tools->Board->Boards Manager** and search for **esp8266** and press install.
+![Alt text](img/ard2.jpg?raw=true "ESP8266 platform")
+* Go to Boards Manager from **Tools->Board->Boards Manager** :
+![Alt text](img/ard3.jpg?raw=true "ESP8266 boards")
+* Search for **esp8266** and press install :
+![Alt text](img/ard4.png?raw=true "ESP8266 esp board")
 * After installation, you will be able to select ESP8266 based devices as a board under **Tools->Board**.
+![Alt text](img/ard6.png?raw=true "ESP8266 esp board selection")
 * Select "NodeMCU 1.0" as board. It will auto complete board specifications; 80 MHz as CPU Frequency, 4M (1M SPIFFS) as Flash Size.
 * To be able to write SW on device and get serial outputs, select a proper device path from **Tools->Port** section.
+![Alt text](img/ard7.png?raw=true "ESP8266 port selection")
 * For Linux users, add your user to the group of dialout to enable serial comm :
 ```
 $ sudo adduser $USER dialout
