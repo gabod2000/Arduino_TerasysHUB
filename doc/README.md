@@ -1,4 +1,4 @@
-## TerasysHUB RESTFul API Example on ESP8266 with Arduino IDE
+## TerasysHUB RESTful API Example on ESP8266 with Arduino IDE
 Below steps will guide you to run ESP8266 based TeraSysHub REST example via Arduino IDE. The temperature and humidity sensor will be [DHT11](https://www.adafruit.com/product/386).
 
 ### Wiring the HW
