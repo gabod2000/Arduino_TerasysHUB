@@ -59,6 +59,6 @@ Arduino_TerasysHUB/app
 /* The credential key to access TerasysHUB with given device. */
 #define KEY     "YOUR-TERASYSHUB-DEVICE-KEY"
 ```
-* After your credentials have been update, compile the code (Ctrl + R) and upload (Ctrl + U) into your device. Please do not forget to select your ESP8266's serial device from the **Tools->Port** section.
+* After your credentials have been updated, compile the code (Ctrl + R) and upload (Ctrl + U) into your device. Please do not forget to select your ESP8266's serial device from the **Tools->Port** section.
 * After you have successfully connect to your WiFi Network, the sample code will measure temperature and humidity and will post it to Terasys HUB periodically within 20 seconds.
 * To see the data post to the TerasysHUB, from your device, you can enable **Serial Monitor** and check the logs.
