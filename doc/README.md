@@ -23,7 +23,7 @@ http://arduino.esp8266.com/stable/package_esp8266com_index.json
 ![Alt text](img/ard6.png?raw=true "ESP8266 esp board selection")
 * Select "NodeMCU 1.0" as board. It will auto complete board specifications; 80 MHz as CPU Frequency, 4M (1M SPIFFS) as Flash Size.
 * To be able to write SW on device and get serial outputs, select a proper device path from **Tools->Port** section.
-![Alt text](img/ard7.png?raw=true "ESP8266 port selection")
+![Alt text](img/ard7.jpg?raw=true "ESP8266 port selection")
 * For Linux users, add your user to the group of dialout to enable serial comm :
 ```
 $ sudo adduser $USER dialout
