@@ -8,11 +8,10 @@ const uint8_t hw_delay = 10;
 String Temperature()
 {
   float t = dht.readTemperature(DHT_FAHRENHEIT);
-  if (isnan(t)) {
-    Serial.println("Failed to read from DHT sensor!");
-    return INCORRECT_MEASUREMENT;
-  }
-  else {
+  if (!ENABLE_DHT || isnan(t)) {
+    Serial.println("Failed to read from DHT sensor or not enabled!");
+    return String(INCORRECT_MEASUREMENT);
+  } else {
     Serial.println(t);
     return String(t);
   }
@@ -21,13 +20,23 @@ String Temperature()
 String Humidity()
 {
   float h = dht.readHumidity();
-  if (isnan(h)) {
-    Serial.println("Failed to read from DHT sensor!");
-    return INCORRECT_MEASUREMENT;
-  }
-  else {
+  if (!ENABLE_DHT || isnan(h)) {
+    Serial.println("Failed to read from DHT sensor or not enabled!");
+    return String(INCORRECT_MEASUREMENT);
+  } else {
     Serial.println(h);
     return String(h);
+  }
+}
+
+String AirQuality()
+{
+  int sensor_read = 0;
+  sensor_read = analogRead(MQ3_PIN);
+  if (ENABLE_MQ3 && sensor_read > 0 && sensor_read < 1024) {
+    return String(sensor_read * 100 / 1024);
+  } else {
+    return String(INCORRECT_MEASUREMENT);
   }
 }
 

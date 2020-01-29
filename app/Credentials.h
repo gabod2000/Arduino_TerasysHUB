@@ -8,7 +8,7 @@
 /* To be able to post to a secure address, SHA1 fingerprint must be gathered from target certificate.
  * Get it from https://www.terasyshub.io.
  */
-#define SHA1    "92 AB 4B B2 44 99 4C 15 0A 58 CE 14 CA 38 BE FB 3E AE EA 34"
+#define SHA1    "D9 D0 F2 1A C9 31 DC 44 11 DA FB 7B 2A 24 52 BD EC 16 F9 FF"
 
 /* User credentails, change them before proceeding! */
 /* WiFi Credentials*/

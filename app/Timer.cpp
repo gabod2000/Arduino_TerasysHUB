@@ -28,8 +28,8 @@ void TIMERInit(unsigned int timerDelay)
 void TIMERLoop()
 {
   if (publishTimerTick) {
-    /* Periodic timer function to POST data to TeraSYS IoT HUB */
-    RESTPostMetrics(Temperature().c_str(), Humidity().c_str());
     publishTimerTick = false;
+    /* Periodic timer function to POST data to TeraSYS IoT HUB */
+    RESTPostMetrics(Temperature().c_str(), Humidity().c_str(), AirQuality().c_str());
   }
 }

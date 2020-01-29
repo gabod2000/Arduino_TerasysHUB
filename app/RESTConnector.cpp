@@ -1,3 +1,4 @@
+#include <ESP8266WiFi.h>
 #include <WiFiClientSecure.h> 
 
 #include "RESTConnector.h"
@@ -6,12 +7,14 @@
 #include "WiFiCore.h"
 #include "Global.h"
 
-WiFiClientSecure httpsClient;
+/* Avoid dynamic memory allocation, use global variable. */
+char jsonBuf[LEN_HTTP_DATA_MAX] = {};
 
 boolean postComposedData(const char* path, const char* data)
 {
   bool ret = false;
   char httpPayload[LEN_HTTP_PAYLOAD_MAX] = {};
+  WiFiClientSecure httpsClient;
 
   httpsClient.setFingerprint(SHA1);
   httpsClient.setTimeout(TIMEOUT_SSL);
@@ -49,20 +52,30 @@ boolean postComposedData(const char* path, const char* data)
       }
       yield();
     }
-  }
-  else {
+  } else {
     Printf("Secure connection failed\n");
   }
 
   return ret;
 }
 
-boolean RESTPostMetrics(const char* temp, const char* hum)
+boolean RESTPostMetrics(const char* temp, const char* hum, const char* air)
 {
   char mac[LEN_MAC_MAX] = {};
-  char jsonBuf[LEN_HTTP_DATA_MAX] = {};
+  char metricBuf[LEN_HTTP_DATA_METRICS_MAX] = {};
 
   WiFiGetMAC(mac);
+  memset(metricBuf, 0, LEN_HTTP_DATA_METRICS_MAX);
+  /* Fill metrics buffer if there is a valid data. */
+  if (strlen(temp)) {
+    sprintf(metricBuf, "{\"value\":\"%s\",\"unit\":\"C\",\"type\":\"temperature\"},", temp);
+  }
+  if (strlen(hum)) {
+    sprintf(metricBuf, "%s{\"value\":\"%s\",\"unit\":\"%%\",\"type\":\"humidity\"},", metricBuf, hum);
+  }
+  if (strlen(air)) {
+    sprintf(metricBuf, "%s{\"value\":\"%s\",\"unit\":\"%%\",\"type\":\"airquality\"}", metricBuf, air);
+  }
 
   memset(jsonBuf, 0, LEN_HTTP_DATA_MAX);
   snprintf(jsonBuf, LEN_HTTP_DATA_MAX,
@@ -71,13 +84,10 @@ boolean RESTPostMetrics(const char* temp, const char* hum)
       "\"location\":{\"lat\":\"%s\",\"lon\":\"%s\"},"
       "\"timestamp\":\"%lu\","
       "\"metrics\":"
-      "["
-        "{\"value\":\"%s\",\"unit\":\"C\",\"type\":\"temperature\"},"
-        "{\"value\":\"%s\",\"unit\":\"%%\",\"type\":\"humidity\"}"
-      "],"
+      "[%s],"
       "\"key\":\"%s\""
     "}",
-    mac, LAT, LON, NTPGetEpoch(), temp, hum, KEY);
+    mac, LAT, LON, NTPGetEpoch(), metricBuf, KEY);
 
-  return postComposedData(DATA, jsonBuf);
+  postComposedData(DATA, jsonBuf);
 }
